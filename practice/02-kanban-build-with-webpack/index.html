@@ -11,7 +11,118 @@
 <body>
   <div id="kanban-app"></div>
 
-	<script>
+	<script type="text/babel">
+    // add basic imports for route definitions
+    var Router = window.ReactRouter.Router;
+    var Route = window.ReactRouter.Route;
+    var Link = window.ReactRouter.Link;
+    var hashHistory = window.ReactRouter.hashHistory;
+
+    // this array will store the tickets that are added
+    var ticketsStore = [];
+
+    var TicketSummary = React.createClass({
+      render: function() {
+        return (<li>{this.props.ticket.summary}</li>);
+      }
+    });
+
+    var TicketList = React.createClass({
+      render: function() {
+        if (!this.props.tickets || !this.props.tickets.length) {
+          return null;
+        }
+
+        var ticketSummaries = this.props.tickets.map(function(ticket) {
+          return (<TicketSummary key={ticket.id} ticket={ticket} />);
+        });
+
+        return (
+          <ul>
+            {ticketSummaries}
+          </ul>
+        );
+      }
+    });
+
+    var TicketListContainer = React.createClass({
+      getInitialState: function() {
+        return {
+          tickets: []
+        };
+      },
+
+      componentDidMount: function() {
+        this.setState({tickets: ticketsStore});
+      },
+
+      render: function() {
+        return (
+          <div>
+            <Link to="/add-ticket">Add new ticket</Link>
+
+            <TicketList tickets={this.state.tickets}/>
+          </div>
+        );
+      }
+    });
+
+    var AddTicket = React.createClass({
+      saveTicket: function(event) {
+        event.preventDefault();
+
+        ticketsStore.push({
+          id: ticketsStore.length,
+          summary: this.refs.summary.value,
+          description: this.refs.description.value,
+          status: this.refs.status.value
+        });
+
+        hashHistory.push("/");
+      },
+
+      cancelSave: function() {
+        hashHistory.push("/");
+      },
+
+      render: function() {
+        return (
+          <div>
+            <form>
+              <label>
+                Summary:
+                <input type="text" ref="summary" />
+              </label>
+              <br />
+
+              <label>
+                Description:
+                <input type="text" ref="description" />
+              </label>
+              <br />
+
+              <label>
+                Status:
+                <input type="text" ref="status" />
+              </label>
+              <br />
+
+              <input type="button" value="Submit" onClick={this.saveTicket} /><br />
+              <input type="button" value="Cancel" onClick={this.cancelSave} />
+            </form>
+          </div>
+        );
+      }
+    });
+
+    var app = (
+      <Router history={hashHistory}>
+        <Route path="/" component={TicketListContainer} />
+        <Route path="/add-ticket" component={AddTicket} />
+      </Router>
+    );
+
+    ReactDOM.render(app, document.getElementById('kanban-app'));
 	</script>
 </body>
 </html>
