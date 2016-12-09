@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default React.createClass({
-      render: function() {
-        return (<li>{this.props.ticket.summary}</li>);
-      }
-    });
+  render: function() {
+    return (<li>{this.props.ticket.summary}</li>);
+  }
+});

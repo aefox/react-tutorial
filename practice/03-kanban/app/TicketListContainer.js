@@ -3,23 +3,23 @@ import TicketList from './TicketList';
 import { Link } from 'react-router';
 
 export default React.createClass({
-      getInitialState: function() {
-        return {
-          tickets: []
-        };
-      },
+  getInitialState: function() {
+    return {
+      tickets: []
+    };
+  },
 
-      componentDidMount: function() {
-        this.setState({tickets: ticketsStore});
-      },
+  componentDidMount: function() {
+    this.setState({tickets: ticketsStore});
+  },
 
-      render: function() {
-        return (
-          <div>
-            <Link to="/add-ticket">Add new ticket</Link>
+  render: function() {
+    return (
+      <div>
+        <Link to="/add-ticket">Add new ticket</Link>
 
-            <TicketList tickets={this.state.tickets}/>
-          </div>
-        );
-      }
-    });
+        <TicketList tickets={this.state.tickets}/>
+      </div>
+    );
+  }
+});

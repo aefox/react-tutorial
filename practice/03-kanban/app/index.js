@@ -7,8 +7,8 @@ import TicketListContainer from './TicketListContainer';
 window.ticketsStore = [];
 
 ReactDOM.render(
-    <Router history={hashHistory}>
-        <Route path="/" component={TicketListContainer} />
-        <Route path="/add-ticket" component={AddTicket} />
-      </Router>
-    , document.getElementById('kanban-app'));
+  <Router history={hashHistory}>
+    <Route path="/" component={TicketListContainer} />
+    <Route path="/add-ticket" component={AddTicket} />
+  </Router>
+  , document.getElementById('kanban-app'));

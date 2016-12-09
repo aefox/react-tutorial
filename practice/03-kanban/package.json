@@ -1,7 +1,7 @@
 {
   "name": "react-tutorial",
   "version": "1.0.0",
-  "description": "Building an application where all code is written in a single file is (obviously I hope) inadequate (if not read [this](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.ganuff4ku)). In this session we'll be adding a very basic [webpack](https://webpack.js.org/) configuration and split our code into separate files.",
+  "description": "Adding webpack to the mix so we can split the code up.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
