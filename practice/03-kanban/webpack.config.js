@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 
 var config = {
-  devtool: 'eval-source-map',
+  devtool: 'cheap-source-map',
   entry:  __dirname + "/app/index.js",
   output: {
     path: __dirname + "/public",
@@ -13,8 +13,7 @@ var config = {
       exclude: /node_modules/,
       loader: 'babel',
       query: {
-        presets: ['es2015','react'],
-        plugins: []
+        presets: ['es2015','react']
       }
     }]
   }
