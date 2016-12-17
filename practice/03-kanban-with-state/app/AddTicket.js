@@ -1,16 +1,12 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
+import Ticket from './Ticket';
 
 export default React.createClass({
   saveTicket: function(event) {
     event.preventDefault();
 
-    window.ticketsStore.push({
-      id: ticketsStore.length,
-      summary: this.refs.summary.value,
-      description: this.refs.description.value,
-      status: this.refs.status.value
-    });
+    window.ticketsStore.push(new Ticket(this.refs.summary.value, this.refs.description.value));
 
     hashHistory.push("/");
   },
